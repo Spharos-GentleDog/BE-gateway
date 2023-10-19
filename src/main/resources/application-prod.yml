@@ -1,0 +1,48 @@
+server:
+  port: 8000
+
+spring:
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 50000
+        response-timeout: 50000
+
+        default-filters:
+          - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+        globalcors:
+          cors-configurations:
+            '[/**]':
+              allowedOrigins:
+                - 'http://localhost:3000'
+              allow-credentials: true
+              allowedHeaders: '*'
+              allowedMethods:
+                - PUT
+                - GET
+                - POST
+                - DELETE
+                - PATCH
+                - OPTIONS
+
+      # gateway로 통신할 service들을 정의
+      routes:
+        #          # ex) user-service -> set other service server name.
+        #        - id:
+        #          # ex) lb://USER-SERVICE -> access for instance name. it must same application name to uploaded eureka.
+        #          uri:
+        #          # ex) - Path=/api/v1/user/** -> set server's controller url
+        #          predicates:
+        #            -
+        - id: payment
+          uri: lb://PAYMENT
+          predicates:
+            - Path=/api/v1/payment/**
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URL}
