@@ -34,10 +34,10 @@ spring:
         #          # ex) - Path=/api/v1/user/** -> set server's controller url
         #          predicates:
         #            -
-        - id: payment
-          uri: lb://PAYMENT
+        - id: orders
+          uri: lb://ORDERS
           predicates:
-            - Path=/api/v1/payment/**
+            - Path=/api/v1/orders/**
 
 
 eureka:
