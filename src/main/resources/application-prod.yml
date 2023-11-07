@@ -15,6 +15,7 @@ spring:
             '[/**]':
               allowedOrigins:
                 - 'http://localhost:3000'
+                - 'https://gentledog.store'
               allow-credentials: true
               allowedHeaders: '*'
               allowedMethods:
@@ -38,6 +39,11 @@ spring:
           uri: lb://ORDERS
           predicates:
             - Path=/api/v1/orders/**
+
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/**
 
 
 eureka:
