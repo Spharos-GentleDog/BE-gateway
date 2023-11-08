@@ -31,9 +31,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // XML
-    implementation 'javax.xml.bind:jaxb-api:'
-
     // Actuator
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
