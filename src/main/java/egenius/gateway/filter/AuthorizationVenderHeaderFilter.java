@@ -17,11 +17,11 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class AuthorizationAdminHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationAdminHeaderFilter.Config> {
+public class AuthorizationVenderHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationVenderHeaderFilter.Config> {
 
     Environment env;
 
-    public AuthorizationAdminHeaderFilter(Environment env) {
+    public AuthorizationVenderHeaderFilter(Environment env) {
         super(Config.class);
         this.env = env;
     }
@@ -32,6 +32,8 @@ public class AuthorizationAdminHeaderFilter extends AbstractGatewayFilterFactory
 
     @Override
     public GatewayFilter apply(Config config) {
+
+        // GatewayFilter를 구현한 익명 클래스를 반환한다.
         return ((exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
 
@@ -71,7 +73,7 @@ public class AuthorizationAdminHeaderFilter extends AbstractGatewayFilterFactory
             Date now = new Date();
 
             // 'role' 정보가 없거나, 만료시간이 지났거나, 'ADMIN'이 아니라면 JWT 토큰이 유효하지 않다.
-            if (role == null || role.isEmpty() || exp == null || exp.before(now) || !role.equals("ADMIN")) {
+            if (role == null || role.isEmpty() || exp == null || exp.before(now) || !role.equals("VENDER")) {
                 returnValue = false;
             }
 

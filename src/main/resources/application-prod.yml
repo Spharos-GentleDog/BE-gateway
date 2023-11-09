@@ -40,11 +40,115 @@ spring:
           predicates:
             - Path=/api/v1/orders/**
 
+        # 유저 회원가입
         - id: user
           uri: lb://USER
           predicates:
-            - Path=/api/v1/user/**
+            - Path=/api/v1/user/signup/**
+            - Method=GET, POST
 
+        # 유저 로그인
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/signin/**
+            - Method=GET
+
+        # 유저 정보 조회, 수정
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/info
+            - Method=GET, PUT
+          filters:
+            - AuthorizationUserHeaderFilter
+
+        # 유저 이메일 찾기
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/email
+            - Method=GET
+
+        # 유저 비밀번호 수정
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/password
+            - Method=PUT
+          filters:
+            - AuthorizationUserHeaderFilter
+
+        # 유저 탈톼
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/withdraw
+            - Method=PUT
+          filters:
+            - AuthorizationUserHeaderFilter
+
+        # 유저 로그아웃
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/signout
+            - Method=POST
+          filters:
+            - AuthorizationUserHeaderFilter
+
+        # 유저 토큰 재발급
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/refresh
+            - Method=POST
+
+        # 유저 강아지
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/dog
+            - Method=POST, GET, PUT, DELETE
+          filters:
+            - AuthorizationUserHeaderFilter
+
+        # 유저 대표 강아지 수정
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/dog/default
+            - Method=PUT
+          filters:
+            - AuthorizationUserHeaderFilter
+
+        # 유저 강아지 품종 조회
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/dog/breeds
+            - Method=GET
+
+        # 유저 배송지
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/dog/address
+            - Method=POST, GET, PUT, DELETE
+          filters:
+            - AuthorizationUserHeaderFilter
+
+        # 유저 대표 배송지 수정
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/dog/address/default
+            - Method=PUT
+          filters:
+            - AuthorizationUserHeaderFilter
+
+token:
+  secret: ${JWT_SECRET_KEY}
 
 eureka:
   client:

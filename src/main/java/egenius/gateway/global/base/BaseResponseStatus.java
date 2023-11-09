@@ -1,4 +1,4 @@
-package global.base;
+package egenius.gateway.global.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public enum BaseResponseStatus {
     /**
      * 900: 기타 에러
      */
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, false, 900, "Internal server error"),
+    INTERNAL_SERVER_ERROR(HttpStatus.BAD_REQUEST, false, 900, "Internal server error"),
 
     /**
      * 요청 실패

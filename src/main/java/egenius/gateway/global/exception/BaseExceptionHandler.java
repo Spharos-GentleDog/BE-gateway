@@ -1,7 +1,7 @@
-package global.exception;
+package egenius.gateway.global.exception;
 
-import global.base.BaseResponse;
-import global.base.BaseResponseStatus;
+import egenius.gateway.global.base.BaseResponse;
+import egenius.gateway.global.base.BaseResponseStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
