@@ -17,11 +17,11 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class AuthorizationAdminHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationAdminHeaderFilter.Config> {
+public class AuthorizationUserHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationUserHeaderFilter.Config> {
 
     Environment env;
 
-    public AuthorizationAdminHeaderFilter(Environment env) {
+    public AuthorizationUserHeaderFilter(Environment env) {
         super(Config.class);
         this.env = env;
     }
@@ -64,14 +64,18 @@ public class AuthorizationAdminHeaderFilter extends AbstractGatewayFilterFactory
             // JWT 토큰에서 'role' 정보를 가져온다.
             Claims claims = Jwts.parser().setSigningKey(env.getProperty("token.secret"))
                     .parseClaimsJws(jwt).getBody();
-
+            log.info("claims : " + claims.toString());
             // 'role' 정보가 없거나, 만료시간이 지났거나, 'ADMIN'이 아니라면 JWT 토큰이 유효하지 않다.
             String role = claims.get("role", String.class);
             Date exp = claims.getExpiration();
             Date now = new Date();
 
             // 'role' 정보가 없거나, 만료시간이 지났거나, 'ADMIN'이 아니라면 JWT 토큰이 유효하지 않다.
-            if (role == null || role.isEmpty() || exp == null || exp.before(now) || !role.equals("ADMIN")) {
+            if (role == null || role.isEmpty() || exp == null || exp.before(now) || !role.equals("USER")) {
+                log.info("role null or empty : " + role);
+                log.info("exp null or before now : " + exp);
+                log.info("now : " + now);
+                log.info("role equals USER : " + role.equals("USER"));
                 returnValue = false;
             }
 

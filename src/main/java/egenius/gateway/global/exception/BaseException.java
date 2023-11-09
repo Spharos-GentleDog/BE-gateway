@@ -1,6 +1,6 @@
-package global.exception;
+package egenius.gateway.global.exception;
 
-import global.base.BaseResponseStatus;
+import egenius.gateway.global.base.BaseResponseStatus;
 import lombok.Getter;
 
 @Getter
