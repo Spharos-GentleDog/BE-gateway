@@ -147,6 +147,20 @@ spring:
           filters:
             - AuthorizationUserHeaderFilter
 
+        #판매자 회원가입
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/signup
+            - Method=POST
+
+        #판매자 로그인
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/signin
+            - Method=POST
+
 token:
   secret: ${JWT_SECRET_KEY}
 
