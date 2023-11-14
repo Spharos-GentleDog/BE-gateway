@@ -39,6 +39,14 @@ spring:
           uri: lb://ORDERS
           predicates:
             - Path=/api/v1/orders/**
+            - Method=GET, POST
+
+        # 주문 서비스 -> 결제관련
+        - id: orders
+          uri: lb://ORDERS
+          predicates:
+            - Path=/api/v1/orders/payment/**
+            - Method=GET, POST
 
         # 유저 회원가입
         - id: user
