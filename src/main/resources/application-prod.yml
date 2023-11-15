@@ -87,7 +87,7 @@ spring:
           filters:
             - AuthorizationUserHeaderFilter
 
-        # 유저 탈톼
+        # 유저 탈퇴
         - id: user
           uri: lb://USER
           predicates:
@@ -120,6 +120,13 @@ spring:
             - Method=POST, GET, PUT, DELETE
           filters:
             - AuthorizationUserHeaderFilter
+
+        # 유저 회원 가입 시 강아지 등록
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/api/v1/user/dog/signup
+            - Method=POST
 
         # 유저 대표 강아지 수정
         - id: user
