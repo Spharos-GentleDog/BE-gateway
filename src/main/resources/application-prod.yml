@@ -169,6 +169,52 @@ spring:
             - Path=/api/v1/vendor/signin
             - Method=POST
 
+        # 판매자 이메일 중복체크
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/check-email
+            - Method=POST
+
+        # 인증 메일 발송
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/email-auth
+            - Method=POST
+
+        # 인증코드 확인
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/email-verify
+            - Method=POST
+            
+        # 아이디 찾기
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/find-email
+            - Method=POST
+
+        # 회원 탈퇴
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/withdrawal
+            - Method=POST
+          filters:
+            - AuthorizationVendorHeaderFilter
+
+        # 비밀번호 변경
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/change-password
+            - Method=POST
+          filters:
+            - AuthorizationVendorHeaderFilter
+
 token:
   secret: ${JWT_SECRET_KEY}
 
