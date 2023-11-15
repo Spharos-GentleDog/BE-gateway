@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                docker run -e EUREKA_URL="${EUREKA_URL}" -d --network gentledog --name gateway -p 8000:8000 gateway
+                docker run -e EUREKA_URL="${EUREKA_URL}" -e JWT_SECRET_KEY="${JWT_SECRET_KEY}" -d --network gentledog --name gateway -p 8000:8000 gateway
                 echo "gateway: run success"
                 '''
             }
