@@ -62,6 +62,7 @@ public class AuthorizationVendorHeaderFilter extends AbstractGatewayFilterFactor
     // JWT 토큰이 유효한지 검사하는 메소드
     private boolean isJwtValid(String jwt) {
         boolean returnValue = true;
+        log.info("isJwtValid : {}",  jwt);
 
         try {
             // JWT 토큰에서 'role' 정보를 가져온다.
