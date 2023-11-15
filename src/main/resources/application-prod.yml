@@ -215,6 +215,24 @@ spring:
           filters:
             - AuthorizationVendorHeaderFilter
 
+        # 판매자 정보 조회
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/info
+            - Method=GET
+          filters:
+            - AuthorizationVendorHeaderFilter
+
+        #판매자 정보 수정
+        - id: vendor-service
+          uri: lb://VENDOR-SERVICE
+          predicates:
+            - Path=/api/v1/vendor/change-info
+            - Method=POST
+          filters:
+            - AuthorizationVendorHeaderFilter
+
 token:
   secret: ${JWT_SECRET_KEY}
 
