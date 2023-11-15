@@ -62,6 +62,7 @@ public class AuthorizationUserHeaderFilter extends AbstractGatewayFilterFactory<
 
         try {
             // JWT 토큰에서 'role' 정보를 가져온다.
+            log.info("env.getProperty(\"token.secret\") : " + env.getProperty("token.secret"));
             Claims claims = Jwts.parser().setSigningKey(env.getProperty("token.secret"))
                     .parseClaimsJws(jwt).getBody();
             log.info("claims : " + claims.toString());
