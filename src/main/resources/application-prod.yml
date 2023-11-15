@@ -60,7 +60,7 @@ spring:
           uri: lb://USER
           predicates:
             - Path=/api/v1/user/signin/**
-            - Method=GET
+            - Method=GET, POST
 
         # 유저 정보 조회, 수정
         - id: user
