@@ -43,8 +43,9 @@ public class AuthorizationUserHeaderFilter extends AbstractGatewayFilterFactory<
             // 만약 요청 헤더에 'Authorization' 헤더가 있다면, 헤더에서 JWT 토큰을 가져온다.
             String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
             // JWT 토큰에서 'Bearer ' 부분을 제거한다.
+            log.info("authorizationHeader={}",authorizationHeader);
             String jwt = authorizationHeader.replace("Bearer ", "");
-
+            log.info("jwt={}",jwt);
             // JWT 토큰이 유효하지 않다면 JWT_NOT_VALID 에러를 반환
             if (!isJwtValid(jwt)) {
                 // JWT 토큰이 유효하지 않다면, 요청을 통과시키지 않는다.
