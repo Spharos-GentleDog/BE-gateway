@@ -217,6 +217,8 @@ spring:
 
 token:
   secret: ${JWT_SECRET_KEY}
+  vendorsecret : ${JWT_VENDOR_SECRET_KEY}
+
 
 eureka:
   client:
