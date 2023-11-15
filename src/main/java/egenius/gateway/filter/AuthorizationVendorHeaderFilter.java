@@ -17,11 +17,11 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class AuthorizationVenderHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationVenderHeaderFilter.Config> {
+public class AuthorizationVendorHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationVendorHeaderFilter.Config> {
 
     Environment env;
 
-    public AuthorizationVenderHeaderFilter(Environment env) {
+    public AuthorizationVendorHeaderFilter(Environment env) {
         super(Config.class);
         this.env = env;
     }
@@ -64,16 +64,19 @@ public class AuthorizationVenderHeaderFilter extends AbstractGatewayFilterFactor
 
         try {
             // JWT 토큰에서 'role' 정보를 가져온다.
+            log.info("토큰 검증");
             Claims claims = Jwts.parser().setSigningKey(env.getProperty("token.secret"))
                     .parseClaimsJws(jwt).getBody();
+            log.info("claims={}",claims);
 
             // 'role' 정보가 없거나, 만료시간이 지났거나, 'ADMIN'이 아니라면 JWT 토큰이 유효하지 않다.
             String role = claims.get("role", String.class);
             Date exp = claims.getExpiration();
             Date now = new Date();
+            log.info("role={}",role);
 
             // 'role' 정보가 없거나, 만료시간이 지났거나, 'ADMIN'이 아니라면 JWT 토큰이 유효하지 않다.
-            if (role == null || role.isEmpty() || exp == null || exp.before(now) || !role.equals("VENDER")) {
+            if (role == null || role.isEmpty() || exp == null || exp.before(now) || !role.equals("VENDOR")) {
                 returnValue = false;
             }
 
