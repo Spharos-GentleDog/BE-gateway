@@ -240,6 +240,71 @@ spring:
           filters:
             - AuthorizationVendorHeaderFilter
 
+        ###### 상품 서버 ######
+        # 관리자 사이즈 등록
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/create-size
+            - Method=POST
+        #          filters:
+        #            - AuthorizationAdminHeaderFilter
+
+        # 관리자 색상 등록
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/create-color
+            - Method=POST
+      #          filters:
+      #            - AuthorizationAdminHeaderFilter
+
+        #관리자 대분류 카테고리 등록
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/create-parent-category
+            - Method=POST
+#          filters:
+#            - AuthorizationAdminHeaderFilter
+
+        #관 리자 중분류 카테고리 등록
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/create-child-category
+            - Method=POST
+
+        # 사이즈 전체 옵션 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/read-all-size
+            - Method=GET
+
+        # 색상 전체 옵션 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/read-colors
+            - Method=GET
+
+        # 카테고리 대분류 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/read-parent-category
+            - Method=GET
+
+        # 상품 등록
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/product-create
+            - Method=POST
+          filters:
+            - AuthorizationVendorHeaderFilter
+
 token:
   secret: ${JWT_SECRET_KEY}
 
