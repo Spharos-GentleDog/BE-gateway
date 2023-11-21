@@ -148,7 +148,7 @@ spring:
         - id: user
           uri: lb://USER
           predicates:
-            - Path=/api/v1/user/dog/address
+            - Path=/api/v1/user/address
             - Method=POST, GET, PUT, DELETE
           filters:
             - AuthorizationUserHeaderFilter
@@ -157,7 +157,7 @@ spring:
         - id: user
           uri: lb://USER
           predicates:
-            - Path=/api/v1/user/dog/address/default
+            - Path=/api/v1/user/address/default
             - Method=PUT
           filters:
             - AuthorizationUserHeaderFilter
