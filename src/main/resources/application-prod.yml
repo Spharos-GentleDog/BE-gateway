@@ -168,12 +168,12 @@ spring:
           filters:
             - AuthorizationUserHeaderFilter
 
-        # 유저 대표 배송지 수정
+        # 유저 대표 배송지
         - id: user
           uri: lb://USER
           predicates:
             - Path=/api/v1/user/address/default
-            - Method=PUT
+            - Method=POST, GET, PUT, DELETE
           filters:
             - AuthorizationUserHeaderFilter
 
