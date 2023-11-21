@@ -305,6 +305,54 @@ spring:
           filters:
             - AuthorizationVendorHeaderFilter
 
+        # 하위 카테고리 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/read-child-category
+            - Method=GET
+
+        # 하위 카테고리별 상품 개수 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/read-child-category-count
+            - Method=GET
+
+        # 상품 재고 정보 변경
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/vendor-product/inventory
+            - Method=POST
+          filters:
+            - AuthorizationVendorHeaderFilter
+
+        #재고 상품 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/vendor-product/vendor-products
+            - Method=GET
+          filters:
+            - AuthorizationVendorHeaderFilter
+
+        #상품 삭제
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/vendor-product/vendor-products/*
+            - Method=DELETE
+          filters:
+            - AuthorizationVendorHeaderFilter
+
+        #재고조회 (장바구니 페이지)
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/vendor-product/sales-count/*
+            - Method=GET
+
 token:
   secret: ${JWT_SECRET_KEY}
 
