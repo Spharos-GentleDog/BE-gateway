@@ -41,7 +41,7 @@ spring:
           uri: lb://WISH
           predicates:
             - Path=/api/v1/wish/**
-            - Methode=GET, POST, DELETE, PUT
+            - Method=GET, POST, DELETE, PUT
 
         # 정산 서비스
         - id: settlement
