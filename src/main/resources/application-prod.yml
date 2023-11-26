@@ -395,6 +395,16 @@ spring:
             - Path=/api/v1/product/order-product-info
             - Method=POST
 
+        ###### 리뷰 서버 ######
+        # 리뷰 등록
+        - id: review-service
+          uri: lb://REVIEW-SERVICE
+          predicates:
+            - Path=/api/v1/review/create-review
+            - Method=POST
+#          filters:
+#            - AuthorizationUserHeaderFilter
+
 token:
   secret: ${JWT_SECRET_KEY}
 
