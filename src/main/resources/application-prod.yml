@@ -374,12 +374,19 @@ spring:
             - Path=/api/v1/vendor-product/sales-count/*
             - Method=GET
 
-        # 상품 상세 조회
+        # 상품 조회
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/api/v1/product/*
+            - Path=/api/v1/product/product-find
             - Method=GET
+
+        # 상품 세부 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/find-product-detail
+            - Method=POST
 
 token:
   secret: ${JWT_SECRET_KEY}
