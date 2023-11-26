@@ -401,7 +401,7 @@ spring:
           predicates:
             - Path=/api/v1/product/product-detail-page
             - Method=GET
-            
+
         ###### 리뷰 서버 ######
         # 리뷰 등록
         - id: review-service
