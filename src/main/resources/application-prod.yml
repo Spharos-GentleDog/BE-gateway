@@ -388,6 +388,13 @@ spring:
             - Path=/api/v1/product/find-product-detail
             - Method=POST
 
+        # 상품 세부 조회 (주문)
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/order-product-info
+            - Method=POST
+
 token:
   secret: ${JWT_SECRET_KEY}
 
