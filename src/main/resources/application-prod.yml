@@ -381,7 +381,7 @@ spring:
             - Path=/api/v1/product/product-find
             - Method=GET
 
-        # 상품 세부 조회
+        # 상품 세부 조회 (장바구니)
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
@@ -395,6 +395,13 @@ spring:
             - Path=/api/v1/product/order-product-info
             - Method=POST
 
+        # 상품 세부 조회
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/product-detail-page
+            - Method=GET
+            
         ###### 리뷰 서버 ######
         # 리뷰 등록
         - id: review-service
