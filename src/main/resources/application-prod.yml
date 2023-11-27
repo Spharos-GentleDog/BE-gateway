@@ -392,7 +392,7 @@ spring:
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/api/v1/product/*
+            - Path=/api/v1/product/product-detail-page
             - Method=GET
 
         ###### 리뷰 서버 ######
@@ -402,8 +402,8 @@ spring:
           predicates:
             - Path=/api/v1/review/create-review
             - Method=POST
-#          filters:
-#            - AuthorizationUserHeaderFilter
+        #          filters:
+        #            - AuthorizationUserHeaderFilter
 
         # 상품 세부 조회 (주문)
         - id: product-service
