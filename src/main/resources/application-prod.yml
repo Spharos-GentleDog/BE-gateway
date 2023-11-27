@@ -166,7 +166,7 @@ spring:
           filters:
             - AuthorizationUserHeaderFilter
 
-        # 유저 강아지 품종 조회
+        # 강아지 품종 전체 조회, 영어이름으로 조회
         - id: user
           uri: lb://USER
           predicates:
