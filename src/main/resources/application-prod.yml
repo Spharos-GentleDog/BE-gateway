@@ -392,8 +392,22 @@ spring:
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/api/v1/product/product-detail-page
+            - Path=/api/v1/product/product-page
             - Method=GET
+
+        # 상품 세부 조회 (주문)
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/order-product-info
+            - Method=POST
+
+        # 상품 조회 (AI)
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/ai-product-detail
+            - Method=POST
 
         ###### 리뷰 서버 ######
         # 리뷰 등록
@@ -405,11 +419,11 @@ spring:
         #          filters:
         #            - AuthorizationUserHeaderFilter
 
-        # 상품 세부 조회 (주문)
-        - id: product-service
-          uri: lb://PRODUCT-SERVICE
+        # 리뷰 조회
+        - id: review-service
+          uri: lb://REVIEW-SERVICE
           predicates:
-            - Path=/api/v1/product/order-product-info
+            - Path=/api/v1/review/find-review-dogId
             - Method=POST
 
 
