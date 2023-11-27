@@ -69,6 +69,14 @@ spring:
             - Path=/api/v1/orders/payment/**
             - Method=GET, POST
 
+        - id: orders
+          uri: lb://ORDERS
+          predicates:
+            - Path=/api/v1/orders/user/**
+            - Method=GET, POST, DELETE, PUT
+          filters:
+            - AuthorizationUserHeaderFilter
+
         # 유저 회원가입
         - id: user
           uri: lb://USER
@@ -162,7 +170,7 @@ spring:
         - id: user
           uri: lb://USER
           predicates:
-            - Path=/api/v1/user/dog/breeds
+            - Path=/api/v1/user/dog/breeds/**
             - Method=GET
 
         # 유저 배송지
