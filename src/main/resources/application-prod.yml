@@ -392,7 +392,7 @@ spring:
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/api/v1/product/product-detail-page
+            - Path=/api/v1/product/*
             - Method=GET
 
         ###### 리뷰 서버 ######
