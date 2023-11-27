@@ -417,6 +417,13 @@ spring:
             - Path=/api/v1/product/ai-product-detail
             - Method=POST
 
+        #상품 디테일 아이디 조회 (색상, 사이즈로)
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/product/findby-color-size
+            - Method=POST
+
         ###### 리뷰 서버 ######
         # 리뷰 등록
         - id: review-service
