@@ -170,7 +170,7 @@ spring:
         - id: user
           uri: lb://USER
           predicates:
-            - Path=/api/v1/user/dog/breeds/**
+            - Path=/api/v1/user/dog/breeds
             - Method=GET
 
         # 유저 배송지
